@@ -1,0 +1,440 @@
+body {
+    font-family: sans-serif;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    background-color: #F8F0E3; /* Cream background */
+    color: #333;
+}
+
+header {
+    background-color: #E6D7C7; /* Slightly darker cream for header */
+    padding: 1rem 0;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+}
+
+.logo {
+    font-size: 1.8rem;
+    font-weight: bold;
+    color: #5C4033; /* Darker brown for logo */
+}
+
+.logo img {
+    max-height: 40px; /* Adjust as needed */
+    vertical-align: middle;
+}
+
+nav ul {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li {
+    margin-left: 2rem;
+}
+
+/* Hamburger menu styles */
+.hamburger-menu {
+    display: none; /* Hidden by default, shown on small screens */
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 0;
+    font-size: 0;
+    position: relative;
+    width: 30px;
+    height: 20px;
+    z-index: 1001;
+}
+
+.hamburger-menu .bar {
+    display: block;
+    width: 100%;
+    height: 3px;
+    background-color: #5C4033;
+    border-radius: 3px;
+    position: absolute;
+    left: 0;
+    transition: all 0.3s ease;
+}
+
+.hamburger-menu .bar:nth-child(1) { top: 0; }
+.hamburger-menu .bar:nth-child(2) { top: 8px; }
+.hamburger-menu .bar:nth-child(3) { top: 16px; }
+
+/* Navigation links container */
+.nav-links {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: flex;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: #5C4033;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+    color: #A0522D; /* A warm brown for hover */
+}
+
+.hero {
+    position: relative;
+    color: #fff; /* White text for better contrast */
+    text-align: center;
+    padding: 10rem 0; /* Removed left/right padding */
+    margin-top: 60px; /* Offset for fixed header */
+    overflow: hidden; /* Crucial for clipping the zoom effect */
+    z-index: 0; /* Ensure hero is below fixed header */
+}
+
+/* Remove old pseudo-element styles */
+.hero::before,
+.hero::after {
+    content: none;
+}
+
+.hero-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    opacity: 0; /* Hidden by default */
+    transform: scale(1); /* Initial state: no zoom */
+    transition: opacity 1s ease-in-out, transform 5s ease-out; /* Smooth transitions */
+    z-index: 0; /* Behind overlay and content */
+}
+
+.hero-bg.active {
+    opacity: 1; /* Make visible */
+    transform: scale(1.1); /* Zoomed state */
+}
+
+.hero-bg-1.active {
+    opacity: 1; /* First image is visible and zoomed initially */
+}
+
+.hero-bg-2 {
+    opacity: 0; /* Second image is hidden initially */
+}
+
+.hero-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.4); /* Semi-transparent overlay */
+    z-index: 1; /* Overlay on top of images, behind content */
+}
+
+/* Remove the old in-view transform rules as they are no longer needed */
+.hero.in-view .hero-bg-1 {
+    /* This rule is now handled by .hero-bg.active */
+}
+
+.hero.in-view .hero-bg-2 {
+    /* This rule is now handled by .hero-bg.active */
+}
+
+.hero-content {
+    position: relative;
+    z-index: 2;
+}
+
+.hero-content h1 {
+    font-size: 3.5rem;
+    color: #fff; /* White text for better contrast */
+    margin-bottom: 1rem;
+}
+
+.hero-content p {
+    font-size: 1.3rem;
+    color: #f0f0f0; /* Slightly off-white for description */
+    margin-bottom: 2rem;
+}
+
+.btn {
+    display: inline-block;
+    background-color: #A0522D; /* Warm brown button */
+    color: #fff;
+    padding: 0.8rem 2rem;
+    text-decoration: none;
+    border-radius: 5px;
+    transition: background-color 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #8B4513; /* Darker brown on hover */
+}
+
+section {
+    padding: 5rem 2rem;
+    max-width: 1200px;
+    margin: 0 auto;
+    text-align: center;
+}
+
+.about {
+    background-color: #F8F0E3;
+}
+
+.about h2, .products h2, .contact h2 {
+    font-size: 2.5rem;
+    color: #5C4033;
+    margin-bottom: 2rem;
+}
+
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 2rem;
+    margin-top: 3rem;
+}
+
+.wholesale-note {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #5C4033; /* Darker brown for text */
+    background-color: #E6D7C7; /* Slightly darker cream for background */
+    padding: 1.5rem 2rem;
+    border-radius: 8px;
+    margin: 3rem auto 0 auto; /* Top margin, centered */
+    max-width: 800px; /* Limit width to keep it readable */
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.product-item {
+    background-color: #fff;
+    padding: 1.5rem;
+    border-radius: 8px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.product-item.available-product {
+    border: 2px solid #A0522D; /* Theme color ring */
+    position: relative; /* For absolute positioning of the bubble */
+}
+
+.availability-bubble {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #A0522D; /* Theme color background */
+    color: #fff;
+    padding: 0.3rem 0.6rem;
+    border-radius: 5px;
+    font-size: 0.8rem;
+    font-weight: bold;
+    z-index: 10;
+}
+
+.product-item:hover {
+    transform: translateY(-15px); /* Increased lift */
+    box-shadow: 0 15px 25px rgba(0, 0, 0, 0.2); /* More prominent shadow */
+    z-index: 10; /* Ensure it comes to front */
+}
+
+.product-item .img-container {
+    width: 100%;
+    padding-bottom: 100%; /* Creates a 1:1 aspect ratio container */
+    position: relative;
+    overflow: hidden;
+    margin-bottom: 1rem; /* Space below the image */
+    border-radius: 5px; /* Match image border-radius */
+}
+
+.product-item img {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover; /* Ensures image covers the container without distortion */
+    border-radius: 5px;
+    transition: opacity 0.3s ease-in-out;
+}
+
+.product-item img.fade-out {
+    opacity: 0;
+}
+
+.product-item h3 {
+    font-size: 1.5rem;
+    color: #5C4033;
+    margin-bottom: 0.5rem;
+}
+
+.product-item p {
+    color: #6B4E3C;
+    margin-bottom: 1rem;
+}
+
+.product-item .price {
+    font-size: 1.2rem;
+    font-weight: bold;
+    color: #A0522D;
+}
+
+footer {
+    background-color: #E6D7C7;
+    color: #5C4033;
+    text-align: center;
+    padding: 2rem 0;
+    margin-top: 3rem;
+}
+
+.body-care-info {
+    background-color: #FDF9F3; /* Lighter cream background */
+    padding: 5rem 2rem;
+    text-align: left; /* Align text to the left */
+}
+
+.body-care-info h2 {
+    font-size: 2.2rem;
+    color: #5C4033;
+    margin-bottom: 1.5rem;
+   
+    text-align: center; /* Center section titles */
+}
+
+.body-care-info p {
+    font-size: 1.1rem;
+    color: #6B4E3C;
+    line-height: 1.6;
+    max-width: 800px;
+    margin: 0 auto 2rem auto; /* Center paragraphs and add bottom margin */
+}
+
+@keyframes fadeUp {
+    from {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.fade-up {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.fade-up.in-view {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+    nav {
+        flex-direction: row; /* Keep nav items in a row */
+        justify-content: space-between; /* Space out logo and hamburger */
+        padding: 0 1rem;
+    }
+
+    .hamburger-menu {
+        display: block; /* Show hamburger menu */
+    }
+
+    .nav-links {
+        display: none; /* Hide nav links by default */
+        flex-direction: column;
+        position: absolute;
+        top: 60px; /* Below header */
+        left: 0;
+        width: 100%;
+        background-color: #E6D7C7;
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+        padding: 1rem 0;
+    }
+
+    .nav-links.active {
+        display: flex; /* Show nav links when active */
+    }
+
+    .nav-links li {
+        margin: 0;
+        text-align: center;
+        padding: 0.5rem 0;
+    }
+
+    .nav-links li a {
+        display: block;
+        padding: 0.5rem 0;
+    }
+
+    .hero {
+        padding: 8rem 1rem;
+        margin-top: 60px; /* Keep top margin for fixed header */
+    }
+
+    .hero-content h1 {
+        font-size: 2.5rem;
+    }
+
+    .hero-content p {
+        font-size: 1rem;
+    }
+
+    .about h2, .products h2, .contact h2 {
+        font-size: 2rem;
+    }
+
+    .product-grid {
+        grid-template-columns: 1fr;
+    }
+
+    section {
+        padding: 4rem 1rem;
+    }
+}
+
+@media (max-width: 480px) {
+    .logo {
+        font-size: 1.5rem;
+    }
+
+    .hero-content h1 {
+        font-size: 2rem;
+    }
+
+    .hero-content p {
+        font-size: 0.9rem;
+    }
+
+    .btn {
+        padding: 0.6rem 1.5rem;
+    }
+
+    .about h2, .products h2, .contact h2 {
+        font-size: 1.8rem;
+    }
+}
